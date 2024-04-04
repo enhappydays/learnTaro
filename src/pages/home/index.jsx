@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <View className='home'>
       {counter}
-    <HyButton type="primary"></HyButton>
+    <HyButton type="primary">666</HyButton>
     </View>
   )
 }
