@@ -56,6 +56,7 @@
     "@tarojs/runtime": "3.6.25",
     "@tarojs/shared": "3.6.25",
     "@tarojs/taro": "3.6.25",
+    "abortcontroller-polyfill": "^1.7.5",
     "classnames": "^2.5.1",
     "proptypes": "^1.1.0",
     "react": "^18.0.0",
