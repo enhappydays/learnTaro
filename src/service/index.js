@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 
 const TIME_OUT=6000;
-const BASE_URL='http://152.136.185.210:7878/api/hy66';
+const BASE_URL='http://codercba.com:9060/juanpi/api';
 class HYRequest{
     request(url,method,data){
         return new Promise((resolve,reject)=>{

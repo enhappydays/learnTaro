@@ -1,8 +1,8 @@
 import { defineConfig } from '@tarojs/cli'
-
+import path from 'path'
 import devConfig from './dev'
 import prodConfig from './prod'
-import path from 'path'
+
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
@@ -57,7 +57,10 @@ export default defineConfig(async (merge, { command, mode }) => {
             namingPattern: 'module', // 转换模式，取值为 global/module
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
-        }
+        },
+        // devserve:{
+
+        // }
       }
     },
     h5: {

@@ -1,10 +1,13 @@
 import { View } from "@tarojs/components";
 // import  Taro   from '@tarojs/taro'
 import { useDispatch, useSelector } from "react-redux";
+
 import { increment,HomeMutidata } from "@/store/modules/home";
+// import { getHomeMutidata } from "@/service/home";
 import HyButton from "../../component/hy-button";
-import "./index.scss";
-// import { getHomeMutidata } from "../../service/home";
+
+import style from  './index.module.scss'
+
 
 // import {  } from "@/store/modules/home";
 

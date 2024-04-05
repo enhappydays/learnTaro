@@ -1,6 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getHomeMutidata } from "@/service/home";
-
+// 异步
+export const HomeMutidata = createAsyncThunk(
+  "home/multidata",//action type的前缀
+  async (payload) => {
+    console.log(payload);
+    const res = await getHomeMutidata();
+    return res.data;
+  }
+);
 const homeSlice = createSlice({
   name: "home", //唯一模块
   initialState: {
@@ -22,13 +30,5 @@ const homeSlice = createSlice({
 });
 // 同步action
 export const { increment, decrement } = homeSlice.actions;
-// 异步
-export const HomeMutidata = createAsyncThunk(
-    "home/multidata",//action type的前缀
-    async (payload) => {
-      console.log(payload);
-    //   const res = await getHomeMutidata();
-      return payload;
-    }
-  );
+
 export default homeSlice.reducer;

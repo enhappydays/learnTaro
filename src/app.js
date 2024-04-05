@@ -3,6 +3,7 @@ import { useLaunch } from '@tarojs/taro'
 import { Provider } from 'react-redux'
 import store from '@/store'
 import './app.scss'
+import './polyfill.js';
 
 function App({ children }) {
 
