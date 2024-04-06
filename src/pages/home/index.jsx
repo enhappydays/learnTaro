@@ -6,8 +6,10 @@ import { increment,HomeMutidata } from "@/store/modules/home";
 // import { getHomeMutidata } from "@/service/home";
 import HyButton from "../../component/hy-button";
 import ScrollView from "./component/scroll-view";
-import { getgoodsAction } from "../../store/modules/home";
-import { useLoad } from "@tarojs/taro";
+import { getCurrentIndex, getgoodsAction,getCurrentPage } from "../../store/modules/home";
+import { useLoad, useReachBottom } from "@tarojs/taro";
+import { useState } from "react";
+
 // import style from  './index.module.scss'
 
 
@@ -21,23 +23,32 @@ export default function Home() {
     return state.home.goodsList
   })
   console.log(goodsList,'selectorselector');
+  const [currentIndex,setCurrentIndex]=useState(0)
+
+
   const dispatch = useDispatch();
   const addNumber = () => {
     dispatch(increment(1));
   };
   const getHome = async() => {
     console.log('dd');
- 
-    // await getHomeMutidata();
     dispatch(HomeMutidata('100'));
   };
   const handleItem=(index)=>{
     console.log(index);
+    setCurrentIndex(index)
+    dispatch(getCurrentIndex(index))
+    dispatch(getCurrentPage(1))
     dispatch(getgoodsAction({type:index,page:1}))
   }
   useLoad(()=>{
     dispatch(getgoodsAction({type:0,page:1}))
-    dispatch(getgoodsAction({type:1,page:1}))
+    // dispatch(getgoodsAction({type:1,page:1}))
+  })
+  useReachBottom(()=>{
+   const page=goodsList.page +1;
+   dispatch(getCurrentPage(page))
+    dispatch(getgoodsAction({type:currentIndex,page}))
   })
   return (
     <View className="home">
@@ -48,7 +59,7 @@ export default function Home() {
       <HyButton type="primary" onBtnClick={()=>getHome()}>
         异步
       </HyButton>
-      <ScrollView title={['精彩推荐','精品案例']} onBtnClick={handleItem} goodsList={goodsList}></ScrollView>
+      <ScrollView title={['精彩推荐','精品案例']} onBtnClick={handleItem} goodsList={goodsList.list}></ScrollView>
     </View>
   );
 }
