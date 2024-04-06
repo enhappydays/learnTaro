@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getHomeMutidata } from "@/service/home";
+import { getgoods } from "../../service/home";
 // 异步
 export const HomeMutidata = createAsyncThunk(
   "home/multidata",//action type的前缀
@@ -9,10 +10,20 @@ export const HomeMutidata = createAsyncThunk(
     return res.data;
   }
 );
+export const getgoodsAction = createAsyncThunk(
+  "home/goods",//action type的前缀
+  async (payload) => {
+    console.log(payload);
+    const {type,page}=payload
+    const res = await getgoods(type,page);
+    return res.data;
+  }
+);
 const homeSlice = createSlice({
   name: "home", //唯一模块
   initialState: {
     counter: 0,
+    goodsList:[]
   },
   reducers: {
     increment(state, action) {
@@ -25,6 +36,9 @@ const homeSlice = createSlice({
   extraReducers:(builder)=>{
     builder.addCase(HomeMutidata.fulfilled,(state,action)=>{
         console.log(action);
+    }).addCase(getgoodsAction.fulfilled,(state,{payload})=>{
+      console.log('getgoodsAction',payload);
+      state.goodsList=payload.goods
     })
   }
 });

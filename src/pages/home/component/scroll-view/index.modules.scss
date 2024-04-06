@@ -1,0 +1,11 @@
+
+.contain{
+    display: flex;
+    .active {
+        background: red;
+      }
+      .scroll {
+        display: flex;
+        width: fit-content;
+      }
+}
